@@ -1,5 +1,5 @@
 import "./SinglePost.css";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -19,15 +19,13 @@ export default function SinglePost() {
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
-        {post ? (
+        {/* {post.photo.cloudinary_url && (
           <img
             className="singlePostImg"
             src={post.photo.cloudinary_url}
             alt=""
           />
-        ) : (
-          <></>
-        )}
+        )} */}
         <h1 className="singlePostTitle">
           {post.title}
           <div className="singlePostEdit">
@@ -37,7 +35,10 @@ export default function SinglePost() {
         </h1>
         <div className="singlePostInfo">
           <span className="singlePostAuthor">
-            Author: <b>{post.username}</b>
+            Author:
+            <Link className="link" to={`/?user=${post.username}`}>
+              <b>{post.username}</b>
+            </Link>
           </span>
           <span className="singlePostDate">
             {new Date(post.createdAt).toDateString()}
