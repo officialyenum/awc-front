@@ -1,56 +1,30 @@
 import "./Post.css";
 import postImg from "../../assets/img/header.jpg";
+import { Link } from "react-router-dom";
 
-export default function Post() {
+export default function Post({ post }) {
   return (
     <div className="post">
-      <img className="postImg" src={postImg} alt="" />
+      {post.photo.cloudinary_url && (
+        <img className="postImg" src={post.photo.cloudinary_url} alt="" />
+      )}
       <div className="postInfo">
         <div className="postCats">
-          <span className="postCat">Event</span>
-          <span className="postCat">News</span>
+          {post.categories.map((cat) => (
+            <span key={cat._id} className="postCat">
+              {cat.name}
+            </span>
+          ))}
         </div>
-        <span className="postTitle">Lorem ipsum, dolor</span>
+        <Link to={`/post/${post._id}`} className="link">
+          <span className="postTitle">{post.title}</span>
+        </Link>
         <hr />
-        <span className="postDate">1 hour ago</span>
+        <span className="postDate">
+          {new Date(post.createdAt).toDateString()}
+        </span>
       </div>
-      <div className="postDesc">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
-        excepturi rerum neque cumque unde rem distinctio. Totam dolores sapiente
-        eligendi sed. Molestias voluptate repellendus voluptatibus, nesciunt
-        odio accusantium quis veritatis. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Obcaecati, excepturi rerum neque cumque unde rem
-        distinctio. Totam dolores sapiente eligendi sed. Molestias voluptate
-        repellendus voluptatibus, nesciunt odio accusantium quis veritatis.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
-        excepturi rerum neque cumque unde rem distinctio. Totam dolores sapiente
-        eligendi sed. Molestias voluptate repellendus voluptatibus, nesciunt
-        odio accusantium quis veritatis. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Obcaecati, excepturi rerum neque cumque unde rem
-        distinctio. Totam dolores sapiente eligendi sed. Molestias voluptate
-        repellendus voluptatibus, nesciunt odio accusantium quis veritatis.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
-        excepturi rerum neque cumque unde rem distinctio. Totam dolores sapiente
-        eligendi sed. Molestias voluptate repellendus voluptatibus, nesciunt
-        odio accusantium quis veritatis. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Obcaecati, excepturi rerum neque cumque unde rem
-        distinctio. Totam dolores sapiente eligendi sed. Molestias voluptate
-        repellendus voluptatibus, nesciunt odio accusantium quis veritatis.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
-        excepturi rerum neque cumque unde rem distinctio. Totam dolores sapiente
-        eligendi sed. Molestias voluptate repellendus voluptatibus, nesciunt
-        odio accusantium quis veritatis. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Obcaecati, excepturi rerum neque cumque unde rem
-        distinctio. Totam dolores sapiente eligendi sed. Molestias voluptate
-        repellendus voluptatibus, nesciunt odio accusantium quis veritatis.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
-        excepturi rerum neque cumque unde rem distinctio. Totam dolores sapiente
-        eligendi sed. Molestias voluptate repellendus voluptatibus, nesciunt
-        odio accusantium quis veritatis. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Obcaecati, excepturi rerum neque cumque unde rem
-        distinctio. Totam dolores sapiente eligendi sed. Molestias voluptate
-        repellendus voluptatibus, nesciunt odio accusantium quis veritatis.
-      </div>
+      <p className="postDesc">{post.description}</p>
     </div>
   );
 }
