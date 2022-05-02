@@ -8,7 +8,7 @@ export default function Header() {
         <span className="headerTitleSm">This is Header title</span>
         <span className="headerTitleLg">Welcome</span>
       </div>
-      <img className="headerImg" src={headerImg} alt="" />
+      {/* <img className="headerImg" src={headerImg} alt="" /> */}
     </div>
   );
 }

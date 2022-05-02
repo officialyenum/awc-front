@@ -1,3 +1,5 @@
+import { useContext } from "react";
+
 import TopBar from "./components/TopBar/TopBar";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
@@ -7,8 +9,9 @@ import Single from "./pages/Single/Single";
 import Write from "./pages/Write/Write";
 import Settings from "./pages/Settings/Settings";
 import { Routes, Route } from "react-router-dom";
+import { Context } from "./context/Context";
 function App() {
-  const user = false;
+  const { user } = useContext(Context);
   return (
     <>
       <TopBar />

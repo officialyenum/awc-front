@@ -6,7 +6,7 @@ import "./Home.css";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_DEV_URL;
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const { search } = useLocation();
